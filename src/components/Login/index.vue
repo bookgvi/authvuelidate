@@ -36,12 +36,43 @@
         </b-modal>
       </b-col>
     </b-row>
+    <b-row class="mt-3">
+      <b-col cols="2" class="pl-0" align="start">
+        <label>Integer input:
+          <b-form-input type="text" :value="intVal" @input.native="hInteger" class="mt-1" />
+        </label>
+      </b-col>
+      <b-col cols="3" align="start">
+        <label>Float or integer input:
+          <b-form-input type="text" :value="numberVal" @input.native="hNumber" class="mt-1" />
+        </label>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
 <script>
+import { Util } from '../../helper/Util'
+
 export default {
-  name: 'login'
+  name: 'login',
+  data () {
+    return {
+      util: Object.create(Util.prototype),
+      intVal: '',
+      numberVal: ''
+    }
+  },
+  methods: {
+    hInteger (e) {
+      e.target.value = this.util.integerInput(e.target.value)
+      this.intVal = e.target.value
+    },
+    hNumber (e) {
+      e.target.value = this.util.floatInput(e.target.value)
+      this.numberVal = e.target.value
+    }
+  }
 }
 </script>
 
