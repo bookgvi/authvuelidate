@@ -16,7 +16,7 @@
 <script>
 import LearningBootstrap from '../components/LearningBootstrap/index'
 export default {
-  name: 'Main',
+  name: 'MainPage',
   components: { LearningBootstrap }
 }
 </script>

@@ -47,6 +47,7 @@ export default {
       const { data } = await login({ login: this.login, password: this.password })
       if (data) {
         localStorage.setItem('jwt', data.access_token)
+        this.$router.replace('/')
       }
     }
   }
