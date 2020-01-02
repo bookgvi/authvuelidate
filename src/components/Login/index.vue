@@ -1,17 +1,17 @@
 <template>
   <b-container class="testing">
     <b-row class="mt-2">
-      <b-col cols="1" class="py-0 pl-0">
-        <h3><b-badge>b-badge: No variant</b-badge></h3>
+      <b-col cols="2" class="pr-2 pl-0">
+        <h3><b-badge v-b-tooltip.hover title="bv-modal - click" @click="$bvModal.show('bv-modal-example')" class="text-truncate w-100" style="cursor: pointer;">b-badge: No variant</b-badge></h3>
       </b-col>
-      <b-col cols="1" class="py-0 pl-0">
-        <h3><b-badge variant="danger">b-badge: Danger variant</b-badge></h3>
+      <b-col cols="2" class="pr-2 pl-0">
+        <h3><b-badge title="modal - click" @click="$bvModal.show('modal-1')" class="text-truncate w-100" variant="danger" style="cursor: pointer;">b-badge: Danger variant</b-badge></h3>
       </b-col>
-      <b-col cols="1" class="py-0 pl-0">
-        <h3><b-badge variant="primary">b-badge: Primary variant</b-badge></h3>
+      <b-col cols="2" class="pr-2 pl-0">
+        <h3><b-badge @click="$bvModal.show('modal-1')" class="text-truncate w-100" variant="primary" style="cursor: pointer;">b-badge: Primary variant</b-badge></h3>
       </b-col>
-      <b-col cols="1" class="py-0 pl-0">
-        <h3><b-badge variant="success">b-badge: Success variant</b-badge></h3>
+      <b-col cols="2" class="pr-2 pl-0">
+        <h3><b-badge @click="$bvModal.show('modal-1')" class="text-truncate w-100" variant="success" style="cursor: pointer;">b-badge: Success variant</b-badge></h3>
       </b-col>
     </b-row>
     <b-row align-h="start" class="mt-2">
