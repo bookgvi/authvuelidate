@@ -70,7 +70,7 @@
 <script>
 import { Util } from '../../helper/Util'
 export default {
-  name: 'login',
+  name: 'learning',
   data () {
     return {
       util: Object.create(Util.prototype),

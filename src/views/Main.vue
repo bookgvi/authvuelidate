@@ -7,16 +7,16 @@
     </div>
     <div class="row">
       <div class="col">
-        <Login />
+        <LearningBootstrap />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Login from '../components/Login/index'
+import LearningBootstrap from '../components/LearningBootstrap/index'
 export default {
   name: 'Main',
-  components: { Login }
+  components: { LearningBootstrap }
 }
 </script>
