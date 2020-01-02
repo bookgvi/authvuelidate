@@ -8,9 +8,16 @@
       hide-header-close
       ok-only
       centered
+      :footer-bg-variant="footerBgVariant"
+      :header-bg-variant="footerBgVariant"
     >
+      <template #modal-header class="bg-danger">
+        <div v-if="isError" align="center" class="w-100">
+          <h4>Ошибка авторизации</h4>
+        </div>
+      </template>
       <template #modal-footer class="bg-danger">
-        <div class="w-100 bg-danger"></div>
+        <div></div>
       </template>
       <b-form @submit="onLogin">
         <b-form-group>
@@ -21,7 +28,7 @@
               :state="login"
             />
           </label>
-          <label class="w-100"> <h4>Password:</h4>
+          <label class="w-100 mt-4"> <h4>Password:</h4>
             <b-form-input
               type="password"
               :value="pass"
@@ -45,6 +52,8 @@ export default {
   data () {
     return {
       show: true,
+      footerBgVariant: 'warning',
+      isError: false,
       name: '',
       login: null,
       pass: '',
@@ -59,6 +68,8 @@ export default {
         localStorage.setItem('jwt', data.access_token)
         this.$router.replace('/')
       } else if (errors) {
+        this.footerBgVariant = 'danger'
+        this.isError = true
         errors.forEach(item => {
           this[item.source] = false
         })
@@ -67,6 +78,8 @@ export default {
     hInput (e, chValue, isRequired) {
       this[chValue] = e.target.value
       this[isRequired] = null
+      this.footerBgVariant = 'warning'
+      this.isError = false
     }
   }
 }
