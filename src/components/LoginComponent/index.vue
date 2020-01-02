@@ -27,6 +27,7 @@
               @input.native="hInput($event, 'name', 'login')"
               :state="login"
             />
+            <b-form-invalid-feedback> Обязательно для заполнения </b-form-invalid-feedback>
           </label>
           <label class="w-100 mt-4"> <h4>Password:</h4>
             <b-form-input
@@ -35,6 +36,7 @@
               @input.native="hInput($event, 'pass', 'password')"
               :state="password"
             />
+            <b-form-invalid-feedback> Обязательно для заполнения </b-form-invalid-feedback>
           </label>
           <b-col align="center" class="w-100 mt-4">
             <b-button type="submit" variant="primary">Submit</b-button>
