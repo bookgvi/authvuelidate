@@ -43,8 +43,16 @@
         </label>
       </b-col>
       <b-col cols="3" align="start">
-        <label>Float or integer input:
-          <b-form-input type="text" :value="numberVal" @input.native="hNumber" class="mt-1" />
+        <label>Float or integer input: &nbsp; <span style="color: red;">*</span>
+          <b-form-input
+            type="text"
+            :value="numberVal"
+            @input.native="hNumber($event, 'vuelidateNumber')"
+            @blur="vuelidateThis(numberVal, 'vuelidateNumber')"
+            :state="vuelidateNumberVM"
+            class="mt-1"
+          />
+          <b-form-invalid-feedback> * Required, must be at least 2 digits </b-form-invalid-feedback>
         </label>
       </b-col>
     </b-row>
@@ -53,24 +61,35 @@
 
 <script>
 import { Util } from '../../helper/Util'
-
 export default {
   name: 'login',
   data () {
     return {
       util: Object.create(Util.prototype),
       intVal: '',
-      numberVal: ''
+      numberVal: '',
+      vuelidateNumber: null
+    }
+  },
+  computed: {
+    vuelidateNumberVM: {
+      get () {
+        return this.vuelidateNumber
+      }
     }
   },
   methods: {
+    vuelidateThis (val, vuelidateProp) {
+      this[vuelidateProp] = val.length >= 2
+    },
     hInteger (e) {
       e.target.value = this.util.integerInput(e.target.value)
       this.intVal = e.target.value
     },
-    hNumber (e) {
+    hNumber (e, vuelidateProp) {
       e.target.value = this.util.floatInput(e.target.value)
       this.numberVal = e.target.value
+      this[vuelidateProp] = null
     }
   }
 }
