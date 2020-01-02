@@ -6,6 +6,7 @@ export const login = async payload => {
     const { data } = await Vue.prototype.$axios.post(URL, { login, password })
     return data
   } catch (err) {
+    console.warn('...Catched', err)
     return err
   }
 }

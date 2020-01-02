@@ -2,22 +2,32 @@
   <div class="login">
     <b-modal
       id="login"
+      v-model="show"
       no-close-on-esc
       no-close-on-backdrop
       hide-header-close
       ok-only
       centered
     >
-      <template #modal-footer>
-        <span></span>
+      <template #modal-footer class="bg-danger">
+        <div class="w-100 bg-danger"></div>
       </template>
       <b-form @submit="onLogin">
         <b-form-group>
           <label class="w-100"> <h4>Login:</h4>
-            <b-form-input v-model="login"></b-form-input>
+            <b-form-input
+              :value="name"
+              @input.native="hInput($event, 'name', 'login')"
+              :state="login"
+            />
           </label>
           <label class="w-100"> <h4>Password:</h4>
-            <b-form-input type="password" v-model="password"></b-form-input>
+            <b-form-input
+              type="password"
+              :value="pass"
+              @input.native="hInput($event, 'pass', 'password')"
+              :state="password"
+            />
           </label>
           <b-col align="center" class="w-100 mt-4">
             <b-button type="submit" variant="primary">Submit</b-button>
@@ -34,21 +44,29 @@ export default {
   name: 'loginDialog',
   data () {
     return {
-      login: '',
-      password: ''
+      show: true,
+      name: '',
+      login: null,
+      pass: '',
+      password: null
     }
-  },
-  mounted () {
-    this.$bvModal.show('login')
   },
   methods: {
     async onLogin (e) {
       e.preventDefault()
-      const { data } = await login({ login: this.login, password: this.password })
+      const { data, errors } = await login({ login: this.name, password: this.pass })
       if (data) {
         localStorage.setItem('jwt', data.access_token)
         this.$router.replace('/')
+      } else if (errors) {
+        errors.forEach(item => {
+          this[item.source] = false
+        })
       }
+    },
+    hInput (e, chValue, isRequired) {
+      this[chValue] = e.target.value
+      this[isRequired] = null
     }
   }
 }

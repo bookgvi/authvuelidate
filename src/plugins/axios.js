@@ -44,12 +44,13 @@ _axios.interceptors.response.use(
       switch (error.response.status) {
         case 401:
         case 403:
+        case 404:
           localStorage.removeItem('jwt')
           window.location.href = '/login'
           break
       }
     }
-    return Promise.reject(error)
+    return Promise.reject(error.response.data)
   }
 )
 
