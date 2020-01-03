@@ -7,8 +7,6 @@ import axios from 'axios'
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.headers.post['Content-Type'] = 'application/json'
-axios.defaults.headers.get['Accept'] = 'application/json'
 
 let config = {
   baseURL: 'https://pre.ugoloc.ucann.ru'
@@ -23,7 +21,7 @@ _axios.interceptors.request.use(
   function (config) {
     const token = localStorage.getItem('jwt')
     if (token) {
-      config.headers.common['Authorization'] = `Bearer ${token}`
+      config.headers.common['Authorization'] = `Bearer ${token}` // `Bearer ${token}`
     }
     return config
   },
@@ -50,6 +48,7 @@ _axios.interceptors.response.use(
       }
       return Promise.reject(error.response.data)
     }
+    return Promise.reject(error)
   }
 )
 

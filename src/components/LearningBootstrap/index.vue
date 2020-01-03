@@ -101,7 +101,11 @@ export default {
     },
     async getCustomers () {
       const URL = '/api/cabinet/v1.0/customers'
-      await this.$axios.get(URL)
+      this.$axios.get(URL).then(resp => {
+        console.log('getData', resp)
+      }, err => {
+        console.warn(err)
+      })
     }
   }
 }
