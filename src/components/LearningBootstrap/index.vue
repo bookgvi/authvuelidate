@@ -64,6 +64,11 @@
         </label>
       </b-col>
     </b-row>
+    <b-row class="mt-3">
+      <b-col align="center">
+        <b-button @click="getCustomers">Click me</b-button>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
@@ -93,6 +98,10 @@ export default {
       e.target.value = this.util.floatInput(e.target.value)
       this.numberVal = e.target.value
       this[vuelidateProp] = null
+    },
+    async getCustomers () {
+      const URL = '/api/cabinet/v1.0/customers'
+      await this.$axios.get(URL)
     }
   }
 }

@@ -23,7 +23,7 @@ _axios.interceptors.request.use(
   function (config) {
     const token = localStorage.getItem('jwt')
     if (token) {
-      config.headers.common['Authorization'] = token
+      config.headers.common['Authorization'] = `Bearer ${token}`
     }
     return config
   },
@@ -45,10 +45,11 @@ _axios.interceptors.response.use(
         case 401:
         case 403:
           localStorage.removeItem('jwt')
+          // window.location.href = '/login'
           break
       }
+      return Promise.reject(error.response.data)
     }
-    return Promise.reject(error.response.data)
   }
 )
 
