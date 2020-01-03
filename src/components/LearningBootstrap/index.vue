@@ -85,9 +85,6 @@ export default {
       vuelidateNumber: null
     }
   },
-  mounted () {
-    console.log(location.href, document.referrer)
-  },
   methods: {
     vuelidateThis (val, vuelidateProp) {
       this[vuelidateProp] = val.length >= 2
