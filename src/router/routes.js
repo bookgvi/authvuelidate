@@ -9,9 +9,29 @@ const routes = [
   },
   {
     path: '/',
-    name: 'main',
     beforeEnter: auth.isNotAuth,
-    component: () => import('../views/Main')
+    component: () => import('../views/Home'),
+    children: [
+      {
+        path: '',
+        component: () => import('../views/Main')
+      },
+      {
+        path: 'main',
+        name: 'main',
+        component: () => import('../views/Main')
+      },
+      {
+        path: 'hello',
+        name: 'hello',
+        component: () => import('../views/Hello')
+      },
+      {
+        path: 'about',
+        name: 'about',
+        component: () => import('../views/About')
+      }
+    ]
   }
 ]
 
