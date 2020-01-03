@@ -66,7 +66,7 @@
     </b-row>
     <b-row class="mt-3">
       <b-col align="center">
-        <b-button @click="getCustomers">Click me</b-button>
+        <b-button @click="getCustomers" variant="primary">Click me - get customers from server</b-button>
       </b-col>
     </b-row>
   </b-container>
